@@ -37,8 +37,8 @@ ENV PATH="/code/.venv/bin:$PATH"
 RUN uv sync --locked
 
 # Copy application code
-COPY pipeline.py .
+COPY ingest_data.py .
 
 # Set entry point
-ENTRYPOINT ["python", "pipeline.py"]
+ENTRYPOINT ["python", "ingest_data.py"]
 # docker run -it --rm  test:pandas 12
