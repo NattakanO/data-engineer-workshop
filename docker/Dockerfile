@@ -25,7 +25,7 @@ WORKDIR /code
 
 #copy these files we got from install uv library
 # Copy dependency files first (better layer caching)
-COPY pyproject.toml uv.lock .python-version ./
+COPY pipeline/pyproject.toml pipeline/uv.lock pipeline/.python-version ./
 
 
 # Add virtual environment to PATH so we can use installed packages
@@ -37,7 +37,7 @@ ENV PATH="/code/.venv/bin:$PATH"
 RUN uv sync --locked
 
 # Copy application code
-COPY ingest_data.py .
+COPY pipeline/ingest_data.py .
 
 # Set entry point
 ENTRYPOINT ["python", "ingest_data.py"]
