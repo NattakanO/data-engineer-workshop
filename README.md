@@ -1,117 +1,60 @@
-# NYC Taxi Data Pipeline
+# Data Engineer Playground
 
-A simple **data engineering pipeline** that downloads NYC taxi trip
-data, processes it using **Python and pandas**, and loads it into a
-**PostgreSQL database running in Docker**.
+This repository is a **learning playground for data engineering concepts, tools, and experiments**.
 
-This project demonstrates core data engineering concepts including:
+It contains small projects, prototypes, and practice exercises used to explore different technologies commonly used in modern data engineering workflows.
 
-- Data ingestion
-- Chunk processing for large datasets
-- Containerized databases
-- Reproducible environments
-- Pipeline scripting
+The goal of this repository is to build hands-on experience with:
+
+- Data pipelines
+- Containerization
+- Infrastructure as Code
+- Databases
+- Cloud infrastructure
+- Data processing frameworks
 
 ---
 
-# Tech Stack
+# Purpose
+
+This repository serves as a **sandbox environment** for experimenting with data engineering tools and architectures before building full production-style projects.
+
+Unlike standalone portfolio projects, this repo may contain:
+
+- experiments
+- tutorials
+- prototype pipelines
+- infrastructure tests
+- small scripts
+
+---
+
+# Topics Covered
+
+Examples of technologies explored in this repository include:
 
 - Python
 - Pandas
-- SQLAlchemy
+- SQL
 - PostgreSQL
 - Docker
 - Docker Compose
-- uv (Python dependency management)
+- Terraform
+- ETL pipelines
+- Data ingestion workflows
+
+More tools will be added over time as new concepts are explored.
 
 ---
 
-# Project Structure
+# Learning Journey
 
-pipeline/
+This repository is part of an ongoing learning journey in data engineering, exploring topics such as:
 
-├── Dockerfile\
-├── docker-compose.yaml\
-├── ingest_data.py\
-├── pipeline.py\
-├── main.py\
-├── notebook.ipynb\
-├── pyproject.toml\
-├── uv.lock\
-└── README.md
+- batch data pipelines
+- containerized data infrastructure
+- scalable data ingestion
+- data orchestration
+- cloud infrastructure
 
 ---
-
-# Setup Instructions
-
-## 1. Start the database
-
-Run PostgreSQL and pgAdmin using Docker Compose.
-
-docker compose up -d
-
-This will start:
-
-PostgreSQL → port 5432\
-pgAdmin → port 8085
-
----
-
-## 2. Access pgAdmin
-
-Open your browser:
-
-http://localhost:8085
-
-Login:
-
-email: admin@admin.com\
-password: root
-
-Database connection settings:
-
-host: pgdatabase\
-port: 5432\
-user: root\
-password: root\
-database: ny_taxi
-
----
-
-## 3. Install Python dependencies
-
-This project uses **uv** for dependency management.
-
-uv sync
-
----
-
-## 4. Run the ingestion pipeline
-
-uv run python ingest_data.py
-
-The script will:
-
-1.  Download NYC taxi trip data
-2.  Read the dataset in chunks
-3.  Create a PostgreSQL table
-4.  Insert records into the database
-
----
-
-# Data Processing Strategy
-
-The dataset is processed in chunks of **100,000 rows** to avoid loading
-large files entirely into memory.
-
----
-
-# Learning Goals
-
-This project demonstrates:
-
-- Containerized database setup
-- Chunk-based data ingestion
-- Pandas → SQL pipelines
-- Environment reproducibility
-- Docker-based workflows

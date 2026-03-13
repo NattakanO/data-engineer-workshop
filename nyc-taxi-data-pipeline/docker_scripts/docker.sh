@@ -1,4 +1,5 @@
-docker build -f docker/Dockerfile -t test:pandas .
+# python container
+docker build -f docker/Dockerfile -t taxi_ingest:v001 .
 
 docker run -it --rm \
   --network=pg-network \
@@ -13,7 +14,7 @@ docker run -it --rm \
   --chunksize=100000 \
   --target-table=yellow_taxi_trips
 
-
+# admin container
 docker run -it --rm \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
   -e PGADMIN_DEFAULT_PASSWORD="root" \
@@ -23,7 +24,7 @@ docker run -it --rm \
   --name pgadmin \
   dpage/pgadmin4
 
-
+# postgresql container
   docker run -it --rm \
   -e POSTGRES_USER="root" \
   -e POSTGRES_PASSWORD="root" \
