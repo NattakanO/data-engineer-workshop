@@ -1,0 +1,51 @@
+id: 01_hello_world
+namespace: zoomcamp
+
+inputs:
+  - id: name
+    type: STRING
+    defaults: Will # 'Will' = default value
+# how many workflow executions can run at the same time
+# Maximum 2 executions running simultaneously
+concurrency:
+  behavior: FAIL #if a third execution starts while two are already running
+  limit: 2
+
+variables:
+  welcome_message: "Hello, {{ inputs.name }}!"
+
+tasks:
+  - id: hello_message
+    type: io.kestra.plugin.core.log.Log
+    message: "{{ render(vars.welcome_message) }}"
+
+  - id: generate_output
+    type: io.kestra.plugin.core.debug.Return
+    format: I was generated during this workflow. #return a string as an output
+    #outputs.generate_output.value can be used to access this output in other tasks
+
+  - id: sleep
+    type: io.kestra.plugin.core.flow.Sleep
+    duration: PT15S #15 seconds
+
+  - id: log_output
+    type: io.kestra.plugin.core.log.Log
+    message: "This is an output: {{ outputs.generate_output.value }}"
+
+  - id: goodbye_message
+    type: io.kestra.plugin.core.log.Log
+    message: "Goodbye, {{ inputs.name }}!"
+# default settings for plugins
+pluginDefaults:
+  - type: io.kestra.plugin.core.log.Log
+    values:
+      level: ERROR
+#automatic execution
+triggers:
+  - id: schedule
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 10 * * *"
+    #minute hour day month weekday = Every day at 10:00
+    inputs:
+      name: Sarah
+    disabled: true # the trigger is currently turned off.
