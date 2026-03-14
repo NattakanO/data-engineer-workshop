@@ -17,27 +17,29 @@ tasks:
   - id: transform
     type: io.kestra.plugin.scripts.python.Script
     containerImage: python:3.11-alpine
+    #name it data.json as input file
     inputFiles:
       data.json: "{{outputs.extract.uri}}"
     outputFiles:
       - "*.json"
     env:
-      COLUMNS_TO_KEEP: "{{inputs.columns_to_keep}}"
+      COLUMNS_TO_KEEP: "{{inputs.columns_to_keep}}" # default value: ["brand", "price"]
     script: |
       import json
       import os
 
-      columns_to_keep_str = os.getenv("COLUMNS_TO_KEEP")
+      columns_to_keep_str = os.getenv("COLUMNS_TO_KEEP") 
       columns_to_keep = json.loads(columns_to_keep_str)
-
+      # data contains the full JSON from the API.
       with open("data.json", "r") as file:
           data = json.load(file)
-
+      # if the column exists, use its value if not, use "N/A"
+      # for column in columns_to_keep make a new dict with the column and its value for each product in data["products"]
       filtered_data = [
           {column: product.get(column, "N/A") for column in columns_to_keep}
           for product in data["products"]
       ]
-
+      # writes the filtered list into a new file called products.json
       with open("products.json", "w") as file:
           json.dump(filtered_data, file, indent=4)
 
@@ -50,6 +52,7 @@ tasks:
       LOAD json;
       SELECT brand, round(avg(price), 2) as avg_price
       FROM read_json_auto('{{workingDir}}/products.json')
+      # {{workingDir}} is Kestra’s working directory for the task
       GROUP BY brand
       ORDER BY avg_price DESC;
-    fetchType: STORE
+    fetchType: STORE # store the results in outputs.query.result

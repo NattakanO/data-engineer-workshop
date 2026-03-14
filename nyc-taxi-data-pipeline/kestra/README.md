@@ -23,7 +23,7 @@ This workflow demonstrates the basic structure of a Kestra pipeline.
 
 ## Workflow Steps
 
-![Architecture](https://drive.google.com/file/d/1kvE3QNJFIgLuKVtBf3kEH4uYFNknS7zk/view?usp=drive_link)
+![Architecture](assets/helloworld.png)
 
 This workflow helps understand the fundamental concepts of Kestra such as:
 
@@ -52,7 +52,7 @@ The workflow performs the following steps:
 
 ## Execution Flow
 
-![Architecture](https://drive.google.com/file/d/13jfiYJ0OUZpSDm5uqftMNc16NRcGijCh/view?usp=drive_link)
+![Architecture](assets/Python Workflow Diagram.png)
 This example shows how Kestra can orchestrate containerized scripts using Docker.
 
 ---
@@ -77,7 +77,7 @@ Use **DuckDB** to run SQL queries on the transformed data.
 
 ## Pipeline Architecture
 
-![Architecture](https://drive.google.com/file/d/1-wUgtK2oeO_DvoaGhjPdN5BI5eXGnPgL/view?usp=drive_link)
+![Architecture](assets/ETL Workflow Diagram.png)
 This pipeline demonstrates how Kestra can orchestrate:
 
 - API data ingestion
@@ -104,3 +104,31 @@ This project was created to learn and practice:
 - Containerized task execution
 - Data pipeline development
 - ETL pipeline design
+
+## 4. PostgreSQL Taxi Data Pipeline
+
+This workflow loads **NYC Taxi trip data** into a PostgreSQL database using **Kestra**.
+
+The data used in this workflow comes from:
+
+https://github.com/DataTalksClub/nyc-tlc-data/releases
+
+---
+
+## Workflow Overview
+
+This pipeline performs the following steps:
+
+![Architecture](assets/Taxi_PostgreSQL.png)
+
+---
+
+## Input Parameters
+
+The workflow allows users to select the dataset using three inputs.
+
+| Input | Description       | Options           | Default  |
+| ----- | ----------------- | ----------------- | -------- |
+| taxi  | Taxi dataset type | `yellow`, `green` | `yellow` |
+| year  | Dataset year      | `2019`, `2020`    | `2019`   |
+| month | Dataset month     | `01` – `12`       | `01`     |
