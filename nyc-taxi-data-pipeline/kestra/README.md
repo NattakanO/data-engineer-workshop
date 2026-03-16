@@ -69,7 +69,7 @@ The workflow performs the following steps:
 
 ## Execution Flow
 
-![Architecture](assets/Python Workflow Diagram.png)
+![Architecture](assets/Python%20Workflow%20Diagram.png)
 
 This example shows how Kestra orchestrates **containerized scripts using Docker**.
 
@@ -95,7 +95,7 @@ Use **DuckDB** to run SQL queries on the transformed data.
 
 ## Pipeline Architecture
 
-![Architecture](assets/ETL Workflow Diagram.png)
+![Architecture](assets/ETL%20Workflow%20Diagram.png)
 
 This workflow demonstrates:
 
