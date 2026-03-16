@@ -212,3 +212,8 @@ __pycache__/
 .env
 data/
 .ipynb_checkpoints
+
+
+test/
+.DS_Store
+.vscode/
