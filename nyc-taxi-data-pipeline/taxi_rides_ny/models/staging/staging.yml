@@ -1,8 +1,0 @@
-sources:
-  - name: raw_data
-    description: "Raw taxi trip data from NYC TLC"
-    database: taxi_rides_ny
-    schema: prod
-    tables:
-      - name: green_tripdata
-      - name: yellow_tripdata
