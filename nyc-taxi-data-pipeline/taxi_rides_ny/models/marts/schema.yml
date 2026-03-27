@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: dim_vendor
+    description: "Dimension table containing vendor information for NYC taxi rides"
+    columns:
+      - name: vendorid
+        description: "Unique identifier for the taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc., 4 = Unknown Vendor)"
+      - name: vendor_name
+        description: "Name of the taxi technology provider"
