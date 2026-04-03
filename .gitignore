@@ -227,3 +227,7 @@ logs/*.log
 *.csv
 *.db
 logs/queries
+
+zones/
+fhvhv/
+anaconda_projects/
